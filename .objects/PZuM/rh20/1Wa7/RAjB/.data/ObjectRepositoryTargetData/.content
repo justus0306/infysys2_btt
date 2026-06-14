@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="fE1jUWHTG02BSNXb-uSaNg" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="ted.europa.eu/en/advanced-search" DesignTimeRectangle="890, 344, 864, 40" ElementType="InputBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='ted-search-input-text' tag='INPUT' /&gt;" Guid="2659c74c-e7b8-47a7-a61f-d3b2e3d160ec" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Find notices easily on TED with Advanced Search - TED' /&gt;" SearchSteps="Selector" Version="V6">
+      <imageRef attrName="InformativeScreenshot" originalValue="363642af14083a4a259ca4ac6e7b5040.jpg" xmlns="">0O_JEQ9Izn06yzsm6pwHTow</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">TypeInto</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>

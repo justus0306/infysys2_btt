@@ -1,0 +1,6 @@
+{
+  "Name": "TED_Ausschreibungs_Monitoring",
+  "ProjectType": "Process",
+  "Description": "Robo Path: TED-Ausschreibungs-Monitoring - Bavaria Tactical Trading GmbH (HM, Informationssysteme 2)",
+  "MainFile": "Main.xaml"
+}

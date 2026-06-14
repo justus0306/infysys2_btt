@@ -1,0 +1,12 @@
+﻿{
+  "Name": "Chrome Find notices easily on TED with Advanced Search - TED",
+  "Type": "App",
+  "Id": "PZuMj40L1k-qoOeNR9-wVw",
+  "Reference": "x_s6q6AvLEiNWWcjM8Q0TQ/PZuMj40L1k-qoOeNR9-wVw",
+  "Created": "2026-06-14T14:14:34.7963216Z",
+  "Updated": "2026-06-14T14:14:34.7963216Z",
+  "CreatedBy": [
+    "UiPath.UIAutomationCore, Version=26.4.4.0, Culture=neutral, PublicKeyToken=null",
+    "UiPath.Platform, Version=25.12.1.0, Culture=neutral, PublicKeyToken=null"
+  ]
+}

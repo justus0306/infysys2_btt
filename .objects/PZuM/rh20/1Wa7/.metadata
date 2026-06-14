@@ -1,0 +1,13 @@
+﻿{
+  "Name": "Chrome Find notices easily on TED with Advanc(1)",
+  "Type": "Screen",
+  "Id": "1Wa7Fuk2n0-ue4e82ndw-A",
+  "Reference": "x_s6q6AvLEiNWWcjM8Q0TQ/1Wa7Fuk2n0-ue4e82ndw-A",
+  "ParentRef": "x_s6q6AvLEiNWWcjM8Q0TQ/rh20lFCk1UGTo38maChcJQ",
+  "Created": "2026-06-14T14:16:26.2649384Z",
+  "Updated": "2026-06-14T14:16:26.2649384Z",
+  "CreatedBy": [
+    "UiPath.UIAutomationCore, Version=26.4.4.0, Culture=neutral, PublicKeyToken=null",
+    "UiPath.Platform, Version=25.12.1.0, Culture=neutral, PublicKeyToken=null"
+  ]
+}

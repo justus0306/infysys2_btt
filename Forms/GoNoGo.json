@@ -1,0 +1,47 @@
+{
+  "display": "form",
+  "components": [
+    {
+      "tag": "h3",
+      "content": "Neue EU-Ausschreibung – Freigabe (Bavaria Tactical Trading)",
+      "type": "htmlelement",
+      "key": "header",
+      "input": false,
+      "tableView": false
+    },
+    {
+      "html": "<p>Bitte den Treffer prüfen und <b>Freigeben</b> oder <b>Ablehnen</b>.</p>",
+      "type": "content",
+      "key": "hinweis",
+      "input": false,
+      "tableView": false
+    },
+    { "label": "Titel",              "key": "Titel",        "type": "textfield", "input": true, "tableView": true,  "disabled": true },
+    { "label": "Abgabefrist",        "key": "Frist",        "type": "textfield", "input": true, "tableView": true,  "disabled": true },
+    { "label": "Land",               "key": "Land",         "type": "textfield", "input": true, "tableView": true,  "disabled": true },
+    { "label": "CPV-Code",           "key": "CPV",          "type": "textfield", "input": true, "tableView": true,  "disabled": true },
+    { "label": "Auftragswert (EUR)", "key": "Auftragswert", "type": "textfield", "input": true, "tableView": true,  "disabled": true },
+    { "label": "Link zur Notice",    "key": "Link",         "type": "textfield", "input": true, "tableView": false, "disabled": true },
+    { "label": "Kommentar (optional)", "key": "Kommentar",  "type": "textarea",  "input": true, "tableView": false, "rows": 3 },
+    {
+      "type": "button",
+      "label": "Freigeben",
+      "key": "Approve",
+      "action": "saveState",
+      "state": "Approve",
+      "theme": "primary",
+      "input": true,
+      "tableView": false
+    },
+    {
+      "type": "button",
+      "label": "Ablehnen",
+      "key": "Reject",
+      "action": "saveState",
+      "state": "Reject",
+      "theme": "danger",
+      "input": true,
+      "tableView": false
+    }
+  ]
+}

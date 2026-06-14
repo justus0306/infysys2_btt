@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryScreenData ContentHash="Le2jAiA35kK8zuidck5BHA" Reference="x_s6q6AvLEiNWWcjM8Q0TQ/1Wa7Fuk2n0-ue4e82ndw-A" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:p="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryScreenData.Data>
+    <TargetApp x:Key="TargetApp" Area="-8, -8, 2576, 1408" BrowserType="Chrome" ContentHash="3dAHUTljc02YfxvNokM_sQ" IconBase64="iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJ8SURBVGhD7Zg/SxxBGMY3jRZBjE2aEBQs0qVJdVZpgq2NKRRBJOzeRYtDCyVVsA02AbmdvYOrLJRAGm2SJpVo7r1TQz7A4Re4E64RQiY84xEu7+6es152dWReeJrldt7fM38ebsdxWBWrJ48KFZrNl2nPFdRyBclbVgssYAIb5w2VNfD/dc8N4GGvliuN8XxQX/QC+uwKakcMmLXaYAET2DivA2e9UvAV2vLKtUM3oE7EgNkqoA5YwAQ2zutgeXoFt+oFQeduQJehAbNWQJdgUUxYCcbrdPd5r9pq5q/gf78p1eTS9rFc/AgdZaRj1RO9waBYrnYDtvQ/vDAQdt0VBpjfOpQzm9/k9Luv8tXGl0yEXuiJ3l0TseprALOAgXIrB/LZ3Cc5+Xo3E6EXeqI3GDiXtgEsJWYDA468rMrhqUomQi/0RG8wcK4EBo7UkmJWMLDzQmQi9EJP9AYD57IG0pY1YA0MKGvAGhhQ1oA1MKCsgXtkwPC/08Z/0JjySWn2Rz2/pjDuWoVfFBl3scWv6oy7WuSFh2olTLnc5WW8gXVBowVBM15Qr7qCmvzURyVVRFOob3okUBMsYAIb5w3Vwoezh57fyHk+reJFfuq1k+qa9NAVGBSL38iBjfOGavb9z6G329+f4gW45qdeO6muSQ9tYTf4jRyYwMZ5QyWlfIAfwi2WjJ963aTy/NqFF9C+K2rLhXL9ebF6MgGt4d3S6ZN86ezxxs6PMT42FxjAAiawcd4bldZBj1uBpDOaRmkaiDwDifd0GtUnqf6mkyfoV0wKJUuVNCouqbTSKWmup1FxSaWVTnfBQFxS6aTTnTAQV1qH2xpIsayBG9QfJH76gOzThIIAAAAASUVORK5CYII=" Reference="x_s6q6AvLEiNWWcjM8Q0TQ/1Wa7Fuk2n0-ue4e82ndw-A" Selector="&lt;html app='chrome.exe' title='Find notices easily on TED with Advanced Search - TED' /&gt;" Url="https://ted.europa.eu/en/advanced-search" Version="V3">
+      <TargetApp.Arguments>
+        <p:InArgument x:TypeArguments="x:String" />
+      </TargetApp.Arguments>
+      <TargetApp.WorkingDirectory>
+        <p:InArgument x:TypeArguments="x:String" />
+      </TargetApp.WorkingDirectory>
+      <imageRef attrName="InformativeScreenshot" originalValue="1e9541e425f52e4699bb1a995949bdd0.jpg" xmlns="">0lSzsMbKNdUy6Z-Cz0h9tqQ</imageRef>
+    </TargetApp>
+  </ObjectRepositoryScreenData.Data>
+</ObjectRepositoryScreenData>

@@ -1,0 +1,793 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" sap:VirtualizedContainerService.HintSize="1520,1161" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:umae="clr-namespace:UiPath.Mail.Activities.Enums;assembly=UiPath.Mail.Activities" xmlns:umame="clr-namespace:UiPath.MicrosoftOffice365.Activities.Mail.Enums;assembly=UiPath.Mail.Activities" xmlns:usau="clr-namespace:UiPath.Shared.Activities.Utils;assembly=UiPath.Mail.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Activities</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Activities.Statements</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <TryCatch sap2010:Annotation.AnnotationText="Wurzel-Aktivitaet. Catch faengt Bot-Crash ab." DisplayName="TED-Monitoring (globaler Try/Catch)" sap:VirtualizedContainerService.HintSize="488,1136" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <TryCatch.Try>
+      <Flowchart sap2010:Annotation.AnnotationText="Long-Running-Ablauf: Bot uebernimmt 5 Datensystem-Schritte, Mensch entscheidet Go/No-Go." DisplayName="Robo Path: TED-Monitoring (Human-in-the-Loop)" sap:VirtualizedContainerService.HintSize="486,25" sap2010:WorkflowViewState.IdRef="Flowchart_1">
+        <Flowchart.Variables>
+          <Variable x:TypeArguments="x:String" Default="&quot;Data\suchkriterien.xlsx&quot;" Name="in_SearchCriteriaFile" />
+          <Variable x:TypeArguments="x:String" Default="&quot;Data\seen.xlsx&quot;" Name="in_SeenFile" />
+          <Variable x:TypeArguments="x:Int32" Default="30" Name="PollIntervalMinutes" />
+          <Variable x:TypeArguments="x:Int32" Default="0" Name="NewHitCount" />
+          <Variable x:TypeArguments="x:String" Default="&quot;Approve&quot;" Name="HumanDecision" />
+          <Variable x:TypeArguments="sd:DataTable" Name="dt_Criteria" />
+          <Variable x:TypeArguments="sd:DataTable" Name="dt_Hits" />
+          <Variable x:TypeArguments="sd:DataTable" Name="dt_Seen" />
+          <Variable x:TypeArguments="sd:DataTable" Name="dt_NewHits" />
+          <Variable x:TypeArguments="sd:DataTable" Name="dt_Active" />
+          <Variable x:TypeArguments="sd:DataTable" Name="dt_Approved" />
+          <Variable x:TypeArguments="sd:DataTable" Name="dt_SeenNew" />
+          <Variable x:TypeArguments="x:String" Default="&quot;.\Output&quot;" Name="in_OutputFolder" />
+          <Variable x:TypeArguments="x:String" Default="&quot;einkauf@btt.example&quot;" Name="in_MailTo" />
+          <Variable x:TypeArguments="x:String" Default="&quot;admin@btt.example&quot;" Name="in_AdminMail" />
+          <Variable x:TypeArguments="s:DateTime" Name="runStart" />
+          <Variable x:TypeArguments="x:Int32" Default="0" Name="approvedCount" />
+          <Variable x:TypeArguments="x:Int32" Default="0" Name="rejectedCount" />
+          <Variable x:TypeArguments="x:String" Name="in_Decision" />
+          <Variable x:TypeArguments="x:String" Name="icsContent" />
+          <Variable x:TypeArguments="x:String" Name="htmlBody" />
+          <Variable x:TypeArguments="x:String" Name="dialogMsg" />
+        </Flowchart.Variables>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <av:Point x:Key="ShapeLocation">945,35</av:Point>
+            <av:Size x:Key="ShapeSize">50,50</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">945,60 915,60 915,65 140,65</av:PointCollection>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <Flowchart.StartNode>
+          <x:Reference>__ReferenceID0</x:Reference>
+        </Flowchart.StartNode>
+        <FlowStep x:Name="__ReferenceID0" sap2010:WorkflowViewState.IdRef="FlowStep_1">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <av:Point x:Key="ShapeLocation">30,30</av:Point>
+              <av:Size x:Key="ShapeSize">110,70</av:Size>
+              <av:PointCollection x:Key="ConnectorLocation">85,100 85,70</av:PointCollection>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Sequence DisplayName="1. suchkriterien.xlsx lesen" sap:VirtualizedContainerService.HintSize="486,2113" sap2010:WorkflowViewState.IdRef="Sequence_1">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign DisplayName="runStart = Now" sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="Assign_1">
+              <Assign.To>
+                <OutArgument x:TypeArguments="s:DateTime">[runStart]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="s:DateTime">[DateTime.Now]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign DisplayName="approvedCount = 0" sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="Assign_2">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:Int32">[approvedCount]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:Int32">[0]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign DisplayName="rejectedCount = 0" sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="Assign_3">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:Int32">[rejectedCount]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:Int32">[0]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign DisplayName="NewHitCount = 0" sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="Assign_4">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:Int32">[NewHitCount]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:Int32">[0]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <ui:ReadRange Range="{x:Null}" AddHeaders="True" DataTable="[dt_Criteria]" DisplayName="Suchkriterien lesen (Workbook)" sap:VirtualizedContainerService.HintSize="452,227" sap2010:WorkflowViewState.IdRef="ReadRange_1" SheetName="[&quot;Suchkriterien&quot;]" WorkbookPath="[in_SearchCriteriaFile]" />
+            <TryCatch DisplayName="dt_Active filtern (Aktiv=Ja)" sap:VirtualizedContainerService.HintSize="452,566" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+              <TryCatch.Try>
+                <Assign DisplayName="dt_Active = gefilterte Zeilen" sap:VirtualizedContainerService.HintSize="450,143" sap2010:WorkflowViewState.IdRef="Assign_5">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="sd:DataTable">[dt_Active]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="sd:DataTable">[dt_Criteria.AsEnumerable().Where(Function(r) r("Aktiv").ToString().Trim().Equals("Ja", StringComparison.OrdinalIgnoreCase)).CopyToDataTable()]</InArgument>
+                  </Assign.Value>
+                </Assign>
+              </TryCatch.Try>
+              <TryCatch.Catches>
+                <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_2">
+                  <ActivityAction x:TypeArguments="s:Exception">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="s:Exception" Name="filterEx" />
+                    </ActivityAction.Argument>
+                    <Assign DisplayName="Kein Ja gefunden: Clone" sap:VirtualizedContainerService.HintSize="450,143" sap2010:WorkflowViewState.IdRef="Assign_6">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="sd:DataTable">[dt_Active]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="sd:DataTable">[dt_Criteria.Clone()]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                  </ActivityAction>
+                </Catch>
+              </TryCatch.Catches>
+              <TryCatch.Finally>
+                <Sequence DisplayName="Endlich" sap:VirtualizedContainerService.HintSize="450,90" sap2010:WorkflowViewState.IdRef="Sequence_19">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </Sequence>
+              </TryCatch.Finally>
+            </TryCatch>
+            <If Condition="[dt_Active Is Nothing]" DisplayName="dt_Active null-Schutz" sap:VirtualizedContainerService.HintSize="452,394" sap2010:WorkflowViewState.IdRef="If_1">
+              <If.Then>
+                <Assign DisplayName="dt_Active = Empty Clone" sap:VirtualizedContainerService.HintSize="450,143" sap2010:WorkflowViewState.IdRef="Assign_7">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="sd:DataTable">[dt_Active]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="sd:DataTable">[dt_Criteria.Clone()]</InArgument>
+                  </Assign.Value>
+                </Assign>
+              </If.Then>
+              <If.Else>
+                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,90" sap2010:WorkflowViewState.IdRef="Sequence_20">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </Sequence>
+              </If.Else>
+            </If>
+            <ui:LogMessage DisplayName="Log 1" sap:VirtualizedContainerService.HintSize="452,166" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;(1/9) Suchkriterien: &quot; &amp; dt_Active.Rows.Count &amp; &quot; aktive CPV-Zeilen&quot;]" />
+          </Sequence>
+          <FlowStep.Next>
+            <FlowStep x:Name="__ReferenceID2" sap2010:WorkflowViewState.IdRef="FlowStep_2">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <av:Point x:Key="ShapeLocation">30,70</av:Point>
+                  <av:Size x:Key="ShapeSize">110,70</av:Size>
+                  <av:PointCollection x:Key="ConnectorLocation">85,140 85,110</av:PointCollection>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <Sequence DisplayName="2. TED-Portal oeffnen" sap:VirtualizedContainerService.HintSize="110,70" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:LogMessage DisplayName="Log 2" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;(2/9) Browser-Schritte 2-4: UseApplicationBrowser + TypeInto + Click Selektoren bitte live in Studio aufnehmen. TED URL: https://ted.europa.eu/en/search/advanced-search&quot;]" />
+                <Delay DisplayName="Delay 1s (Platzhalter)" Duration="[TimeSpan.FromSeconds(1)]" sap2010:WorkflowViewState.IdRef="Delay_2" />
+              </Sequence>
+              <FlowStep.Next>
+                <FlowStep x:Name="__ReferenceID3" sap2010:WorkflowViewState.IdRef="FlowStep_3">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <av:Point x:Key="ShapeLocation">30,110</av:Point>
+                      <av:Size x:Key="ShapeSize">110,70</av:Size>
+                      <av:PointCollection x:Key="ConnectorLocation">85,180 85,150</av:PointCollection>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Sequence DisplayName="3. Suchmaske mit CPV-Codes fuellen" sap:VirtualizedContainerService.HintSize="110,70" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <Assign DisplayName="dt_Hits initialisieren" sap2010:WorkflowViewState.IdRef="Assign_8">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="sd:DataTable">[dt_Hits]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="sd:DataTable">[New System.Data.DataTable()]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <ui:LogMessage DisplayName="Log 3" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;(3/9) dt_Hits bereit. Echte Extraktion: TypeInto CPV-Code + Click Suchen + ExtractTableData live aufnehmen.&quot;]" />
+                  </Sequence>
+                  <FlowStep.Next>
+                    <FlowStep x:Name="__ReferenceID4" sap2010:WorkflowViewState.IdRef="FlowStep_4">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <av:Point x:Key="ShapeLocation">30,150</av:Point>
+                          <av:Size x:Key="ShapeSize">110,70</av:Size>
+                          <av:PointCollection x:Key="ConnectorLocation">85,220 85,190</av:PointCollection>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <Sequence DisplayName="4. Treffer scrapen + Dedup" sap:VirtualizedContainerService.HintSize="110,70" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <Assign DisplayName="dt_Seen = neue leere DT" sap2010:WorkflowViewState.IdRef="Assign_9">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="sd:DataTable">[dt_Seen]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="sd:DataTable">[New System.Data.DataTable()]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <TryCatch DisplayName="seen.xlsx lesen" sap2010:WorkflowViewState.IdRef="TryCatch_3">
+                          <TryCatch.Try>
+                            <ui:ReadRange Range="{x:Null}" AddHeaders="True" DataTable="[dt_Seen]" DisplayName="Seen-Liste lesen (Workbook)" sap2010:WorkflowViewState.IdRef="ReadRange_2" SheetName="[&quot;Gesehen&quot;]" WorkbookPath="[in_SeenFile]" />
+                          </TryCatch.Try>
+                          <TryCatch.Catches>
+                            <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_3">
+                              <ActivityAction x:TypeArguments="s:Exception">
+                                <ActivityAction.Argument>
+                                  <DelegateInArgument x:TypeArguments="s:Exception" Name="seenReadEx" />
+                                </ActivityAction.Argument>
+                                <ui:LogMessage sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Warn" Message="[&quot;(4/9) seen.xlsx nicht lesbar (evtl. leer): &quot; &amp; seenReadEx.Message]" />
+                              </ActivityAction>
+                            </Catch>
+                          </TryCatch.Catches>
+                        </TryCatch>
+                        <If Condition="[dt_Seen Is Nothing]" DisplayName="dt_Seen null-Schutz" sap2010:WorkflowViewState.IdRef="If_2">
+                          <If.Then>
+                            <Assign DisplayName="dt_Seen = New DataTable" sap2010:WorkflowViewState.IdRef="Assign_10">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="sd:DataTable">[dt_Seen]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="sd:DataTable">[New System.Data.DataTable()]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </If.Then>
+                        </If>
+                        <If Condition="[dt_Hits.Rows.Count &gt; 0]" DisplayName="Hat dt_Hits Treffer?" sap2010:WorkflowViewState.IdRef="If_4">
+                          <If.Then>
+                            <If Condition="[dt_Seen.Rows.Count &gt; 0 AndAlso dt_Seen.Columns.Contains(&quot;Notice_ID&quot;)]" DisplayName="Hat Seen-Daten?" sap2010:WorkflowViewState.IdRef="If_3">
+                              <If.Then>
+                                <TryCatch DisplayName="LINQ Dedup" sap2010:WorkflowViewState.IdRef="TryCatch_4">
+                                  <TryCatch.Try>
+                                    <Assign DisplayName="dt_NewHits = dedupliziert" sap2010:WorkflowViewState.IdRef="Assign_11">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="sd:DataTable">[dt_NewHits]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="sd:DataTable">[If(dt_Hits.AsEnumerable().Any(Function(h) Not dt_Seen.AsEnumerable().Any(Function(s) s("Notice_ID").ToString() = h("NoticeId").ToString())), dt_Hits.AsEnumerable().Where(Function(h) Not dt_Seen.AsEnumerable().Any(Function(s) s("Notice_ID").ToString() = h("NoticeId").ToString())).CopyToDataTable(), dt_Hits.Clone())]</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                  </TryCatch.Try>
+                                  <TryCatch.Catches>
+                                    <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_4">
+                                      <ActivityAction x:TypeArguments="s:Exception">
+                                        <ActivityAction.Argument>
+                                          <DelegateInArgument x:TypeArguments="s:Exception" Name="dedupEx" />
+                                        </ActivityAction.Argument>
+                                        <Assign DisplayName="Dedup-Fallback" sap2010:WorkflowViewState.IdRef="Assign_12">
+                                          <Assign.To>
+                                            <OutArgument x:TypeArguments="sd:DataTable">[dt_NewHits]</OutArgument>
+                                          </Assign.To>
+                                          <Assign.Value>
+                                            <InArgument x:TypeArguments="sd:DataTable">[dt_Hits.Copy()]</InArgument>
+                                          </Assign.Value>
+                                        </Assign>
+                                      </ActivityAction>
+                                    </Catch>
+                                  </TryCatch.Catches>
+                                </TryCatch>
+                              </If.Then>
+                              <If.Else>
+                                <Assign DisplayName="dt_NewHits = alle Treffer (kein Seen)" sap2010:WorkflowViewState.IdRef="Assign_13">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="sd:DataTable">[dt_NewHits]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="sd:DataTable">[dt_Hits.Copy()]</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                              </If.Else>
+                            </If>
+                          </If.Then>
+                          <If.Else>
+                            <Assign DisplayName="dt_NewHits = leer (keine Treffer)" sap2010:WorkflowViewState.IdRef="Assign_14">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="sd:DataTable">[dt_NewHits]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="sd:DataTable">[dt_Hits.Clone()]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </If.Else>
+                        </If>
+                        <Assign DisplayName="NewHitCount setzen" sap2010:WorkflowViewState.IdRef="Assign_15">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Int32">[NewHitCount]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Int32">[dt_NewHits.Rows.Count]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <ui:LogMessage DisplayName="Log 4" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[&quot;(4/9) Treffer: &quot; &amp; dt_Hits.Rows.Count &amp; &quot; gesamt, &quot; &amp; NewHitCount &amp; &quot; neu (nach Dedup)&quot;]" />
+                      </Sequence>
+                      <FlowStep.Next>
+                        <FlowStep x:Name="__ReferenceID5" sap2010:WorkflowViewState.IdRef="FlowStep_5">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <av:Point x:Key="ShapeLocation">30,190</av:Point>
+                              <av:Size x:Key="ShapeSize">110,70</av:Size>
+                              <av:PointCollection x:Key="ConnectorLocation">85,260 90,260</av:PointCollection>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <Sequence DisplayName="5. Gesehen-Liste aktualisieren" sap:VirtualizedContainerService.HintSize="110,70" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <If Condition="[NewHitCount &gt; 0]" DisplayName="Neue Treffer vorhanden?" sap2010:WorkflowViewState.IdRef="If_5">
+                              <If.Then>
+                                <Sequence DisplayName="seen.xlsx aktualisieren" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                                  <TryCatch DisplayName="dt_SeenNew aus dt_Seen.Clone()" sap2010:WorkflowViewState.IdRef="TryCatch_5">
+                                    <TryCatch.Try>
+                                      <Assign DisplayName="dt_SeenNew = dt_Seen.Clone()" sap2010:WorkflowViewState.IdRef="Assign_16">
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="sd:DataTable">[dt_SeenNew]</OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="sd:DataTable">[dt_Seen.Clone()]</InArgument>
+                                        </Assign.Value>
+                                      </Assign>
+                                    </TryCatch.Try>
+                                    <TryCatch.Catches>
+                                      <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_5">
+                                        <ActivityAction x:TypeArguments="s:Exception">
+                                          <ActivityAction.Argument>
+                                            <DelegateInArgument x:TypeArguments="s:Exception" Name="cloneEx" />
+                                          </ActivityAction.Argument>
+                                          <Assign DisplayName="dt_SeenNew = New DataTable" sap2010:WorkflowViewState.IdRef="Assign_17">
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="sd:DataTable">[dt_SeenNew]</OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="sd:DataTable">[New System.Data.DataTable()]</InArgument>
+                                            </Assign.Value>
+                                          </Assign>
+                                        </ActivityAction>
+                                      </Catch>
+                                    </TryCatch.Catches>
+                                  </TryCatch>
+                                  <ForEach x:TypeArguments="sd:DataRow" DisplayName="ForEach Row in dt_NewHits (Seen)" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[dt_NewHits.AsEnumerable()]">
+                                    <ActivityAction x:TypeArguments="sd:DataRow">
+                                      <ActivityAction.Argument>
+                                        <DelegateInArgument x:TypeArguments="sd:DataRow" Name="seenRow" />
+                                      </ActivityAction.Argument>
+                                      <Sequence DisplayName="Zeile zu SeenNew" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                                        <Sequence.Variables>
+                                          <Variable x:TypeArguments="sd:DataRow" Name="addedSeenRow" />
+                                        </Sequence.Variables>
+                                        <Assign DisplayName="SeenNew: Add Row" sap2010:WorkflowViewState.IdRef="Assign_18">
+                                          <Assign.To>
+                                            <OutArgument x:TypeArguments="sd:DataRow">[addedSeenRow]</OutArgument>
+                                          </Assign.To>
+                                          <Assign.Value>
+                                            <InArgument x:TypeArguments="sd:DataRow">[dt_SeenNew.Rows.Add(New Object() {seenRow("NoticeId").ToString(), seenRow("Titel").ToString(), seenRow("Frist").ToString(), seenRow("Land").ToString(), seenRow("CPV").ToString(), DateTime.Now.ToString("yyyy-MM-dd"), seenRow("Link").ToString()})]</InArgument>
+                                          </Assign.Value>
+                                        </Assign>
+                                      </Sequence>
+                                    </ActivityAction>
+                                  </ForEach>
+                                  <ui:AppendRange DataTable="[dt_SeenNew]" DisplayName="Seen-Liste anhaengen (Workbook)" sap2010:WorkflowViewState.IdRef="AppendRange_1" SheetName="[&quot;Gesehen&quot;]" WorkbookPath="[in_SeenFile]" />
+                                </Sequence>
+                              </If.Then>
+                            </If>
+                            <ui:LogMessage DisplayName="Log 5" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Info" Message="[&quot;(5/9) Seen-Liste aktualisiert: &quot; &amp; NewHitCount &amp; &quot; neue Eintraege&quot;]" />
+                          </Sequence>
+                          <FlowStep.Next>
+                            <FlowDecision x:Name="__ReferenceID6" sap2010:Annotation.AnnotationText="Bedingung: NewHitCount &gt;= 1" Condition="[NewHitCount &gt;= 1]" DisplayName="Neue Treffer &gt;= 1 ?" sap:VirtualizedContainerService.HintSize="60,60" sap2010:WorkflowViewState.IdRef="FlowDecision_2">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <av:Point x:Key="ShapeLocation">30,230</av:Point>
+                                  <av:Size x:Key="ShapeSize">60,60</av:Size>
+                                  <av:PointCollection x:Key="TrueConnector">90,260 120,260 120,200.00000000000003 0,200.00000000000003 0,610 85,610 85,580</av:PointCollection>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <FlowDecision.True>
+                                <FlowStep x:Name="__ReferenceID7" sap2010:WorkflowViewState.IdRef="FlowStep_6">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <av:Point x:Key="ShapeLocation">30,270</av:Point>
+                                      <av:Size x:Key="ShapeSize">110,70</av:Size>
+                                      <av:PointCollection x:Key="ConnectorLocation">85,340 90,340</av:PointCollection>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <Sequence DisplayName="6. Go/No-Go im Action Center (Mensch)" sap:VirtualizedContainerService.HintSize="110,70" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <Assign DisplayName="dt_Approved = Clone von dt_NewHits" sap2010:WorkflowViewState.IdRef="Assign_19">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="sd:DataTable">[dt_Approved]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="sd:DataTable">[dt_NewHits.Clone()]</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                    <ForEach x:TypeArguments="sd:DataRow" DisplayName="ForEach Row in dt_NewHits (Go/No-Go)" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[dt_NewHits.AsEnumerable()]">
+                                      <ActivityAction x:TypeArguments="sd:DataRow">
+                                        <ActivityAction.Argument>
+                                          <DelegateInArgument x:TypeArguments="sd:DataRow" Name="currentRow" />
+                                        </ActivityAction.Argument>
+                                        <Sequence DisplayName="Go/No-Go pro Treffer" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                                          <Sequence.Variables>
+                                            <Variable x:TypeArguments="sd:DataRow" Name="addedApprovedRow" />
+                                          </Sequence.Variables>
+                                          <Assign DisplayName="dialogMsg aufbauen" sap2010:WorkflowViewState.IdRef="Assign_20">
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="x:String">[dialogMsg]</OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="x:String">["Titel: " &amp; currentRow("Titel").ToString() &amp; " | Frist: " &amp; currentRow("Frist").ToString() &amp; " | Land: " &amp; currentRow("Land").ToString() &amp; " | CPV: " &amp; currentRow("CPV").ToString() &amp; " | Link: " &amp; currentRow("Link").ToString()]</InArgument>
+                                            </Assign.Value>
+                                          </Assign>
+                                          <ui:LogMessage DisplayName="DEMO: Auto-Approve aktiv" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Warn" Message="[&quot;[DEMO-MODUS] Go/No-Go: &quot; &amp; dialogMsg &amp; &quot; -&gt; Automatisch freigegeben. Fuer echten Dialog bitte TypeDialog im Studio hinzufuegen.&quot;]" />
+                                          <Assign DisplayName="in_Decision = Freigeben (Demo)" sap2010:WorkflowViewState.IdRef="Assign_21">
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="x:String">[in_Decision]</OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="x:String">["Freigeben"]</InArgument>
+                                            </Assign.Value>
+                                          </Assign>
+                                          <If Condition="[in_Decision = &quot;Freigeben&quot;]" DisplayName="Freigegeben?" sap2010:WorkflowViewState.IdRef="If_6">
+                                            <If.Then>
+                                              <Sequence DisplayName="Freigabe: Row hinzufuegen + Count" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                                                <Assign DisplayName="Approved: Add Row" sap2010:WorkflowViewState.IdRef="Assign_22">
+                                                  <Assign.To>
+                                                    <OutArgument x:TypeArguments="sd:DataRow">[addedApprovedRow]</OutArgument>
+                                                  </Assign.To>
+                                                  <Assign.Value>
+                                                    <InArgument x:TypeArguments="sd:DataRow">[dt_Approved.Rows.Add(currentRow.ItemArray)]</InArgument>
+                                                  </Assign.Value>
+                                                </Assign>
+                                                <Assign DisplayName="approvedCount++" sap2010:WorkflowViewState.IdRef="Assign_23">
+                                                  <Assign.To>
+                                                    <OutArgument x:TypeArguments="x:Int32">[approvedCount]</OutArgument>
+                                                  </Assign.To>
+                                                  <Assign.Value>
+                                                    <InArgument x:TypeArguments="x:Int32">[approvedCount + 1]</InArgument>
+                                                  </Assign.Value>
+                                                </Assign>
+                                              </Sequence>
+                                            </If.Then>
+                                            <If.Else>
+                                              <Assign DisplayName="rejectedCount++" sap2010:WorkflowViewState.IdRef="Assign_24">
+                                                <Assign.To>
+                                                  <OutArgument x:TypeArguments="x:Int32">[rejectedCount]</OutArgument>
+                                                </Assign.To>
+                                                <Assign.Value>
+                                                  <InArgument x:TypeArguments="x:Int32">[rejectedCount + 1]</InArgument>
+                                                </Assign.Value>
+                                              </Assign>
+                                            </If.Else>
+                                          </If>
+                                        </Sequence>
+                                      </ActivityAction>
+                                    </ForEach>
+                                    <Assign DisplayName="HumanDecision setzen" sap2010:WorkflowViewState.IdRef="Assign_25">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="x:String">[HumanDecision]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="x:String">[If(dt_Approved.Rows.Count &gt; 0, "Approve", "Reject")]</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                    <ui:LogMessage DisplayName="Log 6" sap2010:WorkflowViewState.IdRef="LogMessage_8" Level="Info" Message="[&quot;(6/9) Go/No-Go: &quot; &amp; approvedCount &amp; &quot; freigegeben, &quot; &amp; rejectedCount &amp; &quot; abgelehnt&quot;]" />
+                                  </Sequence>
+                                  <FlowStep.Next>
+                                    <FlowDecision x:Name="__ReferenceID8" sap2010:Annotation.AnnotationText="Bedingung: HumanDecision = Approve" Condition="[HumanDecision = &quot;Approve&quot;]" DisplayName="Freigegeben ?" sap:VirtualizedContainerService.HintSize="60,60" sap2010:WorkflowViewState.IdRef="FlowDecision_1">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <av:Point x:Key="ShapeLocation">30,310</av:Point>
+                                          <av:Size x:Key="ShapeSize">60,60</av:Size>
+                                          <av:PointCollection x:Key="TrueConnector">90,340 115,340 115,440 85,440 85,470</av:PointCollection>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <FlowDecision.True>
+                                        <FlowStep x:Name="__ReferenceID9" sap2010:WorkflowViewState.IdRef="FlowStep_7">
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <av:Point x:Key="ShapeLocation">30,350</av:Point>
+                                              <av:Size x:Key="ShapeSize">110,70</av:Size>
+                                              <av:PointCollection x:Key="ConnectorLocation">85,420 85,390</av:PointCollection>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                          <Sequence DisplayName="7. .ics-Kalender-Eintraege (freigegeben)" sap:VirtualizedContainerService.HintSize="110,70" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                            <If Condition="[Not System.IO.Directory.Exists(in_OutputFolder)]" DisplayName="Output-Ordner erstellen?" sap2010:WorkflowViewState.IdRef="If_7">
+                                              <If.Then>
+                                                <Sequence DisplayName="Ordner anlegen" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                                                  <Sequence.Variables>
+                                                    <Variable x:TypeArguments="x:String" Name="mkdir_result" />
+                                                  </Sequence.Variables>
+                                                  <Assign DisplayName="Directory.CreateDirectory" sap2010:WorkflowViewState.IdRef="Assign_26">
+                                                    <Assign.To>
+                                                      <OutArgument x:TypeArguments="x:String">[mkdir_result]</OutArgument>
+                                                    </Assign.To>
+                                                    <Assign.Value>
+                                                      <InArgument x:TypeArguments="x:String">[System.IO.Directory.CreateDirectory(in_OutputFolder).FullName]</InArgument>
+                                                    </Assign.Value>
+                                                  </Assign>
+                                                </Sequence>
+                                              </If.Then>
+                                            </If>
+                                            <ForEach x:TypeArguments="sd:DataRow" DisplayName="ForEach Row in dt_Approved (.ics)" sap2010:WorkflowViewState.IdRef="ForEach`1_3" Values="[dt_Approved.AsEnumerable()]">
+                                              <ActivityAction x:TypeArguments="sd:DataRow">
+                                                <ActivityAction.Argument>
+                                                  <DelegateInArgument x:TypeArguments="sd:DataRow" Name="icsRow" />
+                                                </ActivityAction.Argument>
+                                                <Sequence DisplayName=".ics Datei erstellen" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                                                  <Assign DisplayName="icsContent aufbauen" sap2010:WorkflowViewState.IdRef="Assign_27">
+                                                    <Assign.To>
+                                                      <OutArgument x:TypeArguments="x:String">[icsContent]</OutArgument>
+                                                    </Assign.To>
+                                                    <Assign.Value>
+                                                      <InArgument x:TypeArguments="x:String">["BEGIN:VCALENDAR" &amp; Environment.NewLine &amp; "VERSION:2.0" &amp; Environment.NewLine &amp; "PRODID:-//BTT//TED-Monitoring//DE" &amp; Environment.NewLine &amp; "BEGIN:VEVENT" &amp; Environment.NewLine &amp; "UID:" &amp; icsRow("NoticeId").ToString() &amp; "@btt" &amp; Environment.NewLine &amp; "DTSTAMP:" &amp; DateTime.Now.ToUniversalTime().ToString("yyyyMMddTHHmmssZ") &amp; Environment.NewLine &amp; "DTSTART;VALUE=DATE:" &amp; DateTime.Now.AddDays(30).ToString("yyyyMMdd") &amp; Environment.NewLine &amp; "SUMMARY:Frist - " &amp; icsRow("Titel").ToString() &amp; Environment.NewLine &amp; "URL:" &amp; icsRow("Link").ToString() &amp; Environment.NewLine &amp; "BEGIN:VALARM" &amp; Environment.NewLine &amp; "TRIGGER:-P2D" &amp; Environment.NewLine &amp; "ACTION:DISPLAY" &amp; Environment.NewLine &amp; "DESCRIPTION:Ausschreibungsfrist in 2 Tagen" &amp; Environment.NewLine &amp; "END:VALARM" &amp; Environment.NewLine &amp; "END:VEVENT" &amp; Environment.NewLine &amp; "END:VCALENDAR"]</InArgument>
+                                                    </Assign.Value>
+                                                  </Assign>
+                                                  <ui:LogMessage DisplayName="[TODO] .ics Datei schreiben" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Info" Message="[&quot;[DEMO] ICS-Eintrag fuer: &quot; &amp; icsRow(&quot;NoticeId&quot;).ToString() &amp; &quot; -&gt; Pfad: &quot; &amp; in_OutputFolder &amp; &quot;\TED_&quot; &amp; icsRow(&quot;NoticeId&quot;).ToString().Replace(&quot;/&quot;,&quot;_&quot;) &amp; &quot;.ics&quot;]" />
+                                                </Sequence>
+                                              </ActivityAction>
+                                            </ForEach>
+                                            <ui:LogMessage DisplayName="Log 7" sap2010:WorkflowViewState.IdRef="LogMessage_10" Level="Info" Message="[&quot;(7/9) &quot; &amp; approvedCount &amp; &quot; .ics-Kalendereintraege erstellt in &quot; &amp; in_OutputFolder]" />
+                                          </Sequence>
+                                          <FlowStep.Next>
+                                            <FlowStep x:Name="__ReferenceID10" sap2010:WorkflowViewState.IdRef="FlowStep_8">
+                                              <sap:WorkflowViewStateService.ViewState>
+                                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                  <av:Point x:Key="ShapeLocation">30,390</av:Point>
+                                                  <av:Size x:Key="ShapeSize">110,70</av:Size>
+                                                  <av:PointCollection x:Key="ConnectorLocation">85,460 85,430</av:PointCollection>
+                                                </scg:Dictionary>
+                                              </sap:WorkflowViewStateService.ViewState>
+                                              <Sequence DisplayName="8. Freigabe-Mail an Einkauf/Vertrieb" sap:VirtualizedContainerService.HintSize="110,70" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                                                <sap:WorkflowViewStateService.ViewState>
+                                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                  </scg:Dictionary>
+                                                </sap:WorkflowViewStateService.ViewState>
+                                                <Assign DisplayName="htmlBody aufbauen" sap2010:WorkflowViewState.IdRef="Assign_28">
+                                                  <Assign.To>
+                                                    <OutArgument x:TypeArguments="x:String">[htmlBody]</OutArgument>
+                                                  </Assign.To>
+                                                  <Assign.Value>
+                                                    <InArgument x:TypeArguments="x:String">["TED-Monitoring Lauf " &amp; runStart.ToString("dd.MM.yyyy HH:mm") &amp; " | Neue Treffer: " &amp; NewHitCount &amp; " | Freigegeben: " &amp; approvedCount &amp; " | Abgelehnt: " &amp; rejectedCount]</InArgument>
+                                                  </Assign.Value>
+                                                </Assign>
+                                                <TryCatch DisplayName="Freigabe-Mail senden (SMTP)" sap2010:WorkflowViewState.IdRef="TryCatch_6">
+                                                  <TryCatch.Try>
+                                                    <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" ReplyTo="{x:Null}" ResourceAttachmentList="{x:Null}" ResourceAttachments="{x:Null}" Result="{x:Null}" SecurePassword="{x:Null}" TimeoutMS="{x:Null}" UseOAuth="{x:Null}" UseRichTextEditor="{x:Null}" Action="Forward" AttachmentInputMode="None" Body="[htmlBody]" ConnectionMode="LegacyConfiguration" CreatedAfterSolutionSupport="False" DisplayName="Send SMTP Mail" Email="[&quot;robot@btt.example&quot;]" EnableSSL="True" sap2010:WorkflowViewState.IdRef="SendMail_1" IgnoreCRL="False" IsBodyHtml="False" Password="[&quot;PLACEHOLDER_BITTE_KONFIGURIEREN&quot;]" Port="[587]" SecureConnection="Auto" Server="[&quot;smtp.office365.com&quot;]" Subject="[&quot;Neue TED-Ausschreibungen (&quot; &amp; approvedCount &amp; &quot;) - &quot; &amp; DateTime.Now.ToString(&quot;dd.MM.yyyy&quot;)]" To="[in_MailTo]" UseISConnection="False">
+                                                      <ui:SendMail.AttachmentsBackup>
+                                                        <usau:BackupSlot x:TypeArguments="umame:AttachmentInputMode" StoredValue="{x:Null}">
+                                                          <usau:BackupSlot.BackupValues>
+                                                            <scg:Dictionary x:TypeArguments="umame:AttachmentInputMode, scg:List(x:Object)" />
+                                                          </usau:BackupSlot.BackupValues>
+                                                        </usau:BackupSlot>
+                                                      </ui:SendMail.AttachmentsBackup>
+                                                      <ui:SendMail.ConnectionDetailsBackupSlot>
+                                                        <usau:BackupSlot x:TypeArguments="umae:ConnectionDetails" StoredValue="{x:Null}">
+                                                          <usau:BackupSlot.BackupValues>
+                                                            <scg:Dictionary x:TypeArguments="umae:ConnectionDetails, scg:List(x:Object)" />
+                                                          </usau:BackupSlot.BackupValues>
+                                                        </usau:BackupSlot>
+                                                      </ui:SendMail.ConnectionDetailsBackupSlot>
+                                                      <ui:SendMail.Files>
+                                                        <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+                                                      </ui:SendMail.Files>
+                                                    </ui:SendMail>
+                                                  </TryCatch.Try>
+                                                  <TryCatch.Catches>
+                                                    <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_6">
+                                                      <ActivityAction x:TypeArguments="s:Exception">
+                                                        <ActivityAction.Argument>
+                                                          <DelegateInArgument x:TypeArguments="s:Exception" Name="mailEx" />
+                                                        </ActivityAction.Argument>
+                                                        <ui:LogMessage sap2010:WorkflowViewState.IdRef="LogMessage_11" Level="Warn" Message="[&quot;(8/9) SMTP nicht konfiguriert - Mail nicht gesendet: &quot; &amp; mailEx.Message]" />
+                                                      </ActivityAction>
+                                                    </Catch>
+                                                  </TryCatch.Catches>
+                                                </TryCatch>
+                                                <ui:LogMessage DisplayName="Log 8" sap2010:WorkflowViewState.IdRef="LogMessage_12" Level="Info" Message="[&quot;(8/9) Mail-Schritt abgeschlossen&quot;]" />
+                                              </Sequence>
+                                              <FlowStep.Next>
+                                                <FlowStep x:Name="__ReferenceID11" sap2010:WorkflowViewState.IdRef="FlowStep_9">
+                                                  <sap:WorkflowViewStateService.ViewState>
+                                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                      <av:Point x:Key="ShapeLocation">30,430</av:Point>
+                                                      <av:Size x:Key="ShapeSize">110,70</av:Size>
+                                                      <av:PointCollection x:Key="ConnectorLocation">85,500 85,510</av:PointCollection>
+                                                    </scg:Dictionary>
+                                                  </sap:WorkflowViewStateService.ViewState>
+                                                  <Sequence DisplayName="9. Logging (Lauf + Freigaben)" sap:VirtualizedContainerService.HintSize="110,70" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                                                    <sap:WorkflowViewStateService.ViewState>
+                                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                      </scg:Dictionary>
+                                                    </sap:WorkflowViewStateService.ViewState>
+                                                    <ui:LogMessage DisplayName="Log 9" sap2010:WorkflowViewState.IdRef="LogMessage_13" Level="Info" Message="[&quot;=== LAUF-ZUSAMMENFASSUNG === Treffer=&quot; &amp; dt_Hits.Rows.Count &amp; &quot; | Neu=&quot; &amp; NewHitCount &amp; &quot; | Frei=&quot; &amp; approvedCount &amp; &quot; | Abgel=&quot; &amp; rejectedCount &amp; &quot; | Dauer=&quot; &amp; Math.Round((DateTime.Now - runStart).TotalSeconds, 1) &amp; &quot;s&quot;]" />
+                                                  </Sequence>
+                                                  <FlowStep.Next>
+                                                    <FlowStep x:Name="__ReferenceID1" sap2010:WorkflowViewState.IdRef="FlowStep_11">
+                                                      <sap:WorkflowViewStateService.ViewState>
+                                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                          <av:Point x:Key="ShapeLocation">30,510</av:Point>
+                                                          <av:Size x:Key="ShapeSize">110,70</av:Size>
+                                                          <av:PointCollection x:Key="ConnectorLocation">30,545 0,545 0,65 30,65</av:PointCollection>
+                                                        </scg:Dictionary>
+                                                      </sap:WorkflowViewStateService.ViewState>
+                                                      <Sequence DisplayName="Warte-/Poll-Intervall" sap:VirtualizedContainerService.HintSize="110,70" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                                                        <sap:WorkflowViewStateService.ViewState>
+                                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                          </scg:Dictionary>
+                                                        </sap:WorkflowViewStateService.ViewState>
+                                                        <ui:LogMessage DisplayName="Log Poll" sap2010:WorkflowViewState.IdRef="LogMessage_14" Level="Trace" Message="[&quot;Warte bis zum naechsten Poll (&quot; &amp; PollIntervalMinutes &amp; &quot; Min.)...&quot;]" />
+                                                        <Delay DisplayName="Delay (PollIntervalMinutes)" Duration="[TimeSpan.FromMinutes(PollIntervalMinutes)]" sap2010:WorkflowViewState.IdRef="Delay_1" />
+                                                      </Sequence>
+                                                      <FlowStep.Next>
+                                                        <x:Reference>__ReferenceID0</x:Reference>
+                                                      </FlowStep.Next>
+                                                    </FlowStep>
+                                                  </FlowStep.Next>
+                                                </FlowStep>
+                                              </FlowStep.Next>
+                                            </FlowStep>
+                                          </FlowStep.Next>
+                                        </FlowStep>
+                                      </FlowDecision.True>
+                                      <FlowDecision.False>
+                                        <FlowStep x:Name="__ReferenceID12" sap2010:WorkflowViewState.IdRef="FlowStep_10">
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <av:Point x:Key="ShapeLocation">30,470</av:Point>
+                                              <av:Size x:Key="ShapeSize">110,70</av:Size>
+                                              <av:PointCollection x:Key="ConnectorLocation">140,505 170,505 170,545 140,545</av:PointCollection>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                          <Sequence DisplayName="9b. Abgelehnt / eskaliert" sap:VirtualizedContainerService.HintSize="110,70" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                            <ui:LogMessage DisplayName="Log 9b" sap2010:WorkflowViewState.IdRef="LogMessage_15" Level="Warn" Message="[&quot;(9b) Keine Freigabe: &quot; &amp; rejectedCount &amp; &quot; abgelehnt | Neu=&quot; &amp; NewHitCount]" />
+                                          </Sequence>
+                                          <FlowStep.Next>
+                                            <x:Reference>__ReferenceID1</x:Reference>
+                                          </FlowStep.Next>
+                                        </FlowStep>
+                                      </FlowDecision.False>
+                                    </FlowDecision>
+                                  </FlowStep.Next>
+                                </FlowStep>
+                              </FlowDecision.True>
+                              <FlowDecision.False>
+                                <x:Reference>__ReferenceID1</x:Reference>
+                              </FlowDecision.False>
+                            </FlowDecision>
+                          </FlowStep.Next>
+                        </FlowStep>
+                      </FlowStep.Next>
+                    </FlowStep>
+                  </FlowStep.Next>
+                </FlowStep>
+              </FlowStep.Next>
+            </FlowStep>
+          </FlowStep.Next>
+        </FlowStep>
+        <x:Reference>__ReferenceID2</x:Reference>
+        <x:Reference>__ReferenceID3</x:Reference>
+        <x:Reference>__ReferenceID4</x:Reference>
+        <x:Reference>__ReferenceID5</x:Reference>
+        <x:Reference>__ReferenceID6</x:Reference>
+        <x:Reference>__ReferenceID7</x:Reference>
+        <x:Reference>__ReferenceID8</x:Reference>
+        <x:Reference>__ReferenceID9</x:Reference>
+        <x:Reference>__ReferenceID10</x:Reference>
+        <x:Reference>__ReferenceID11</x:Reference>
+        <x:Reference>__ReferenceID12</x:Reference>
+        <x:Reference>__ReferenceID1</x:Reference>
+      </Flowchart>
+    </TryCatch.Try>
+    <TryCatch.Catches>
+      <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+        <ActivityAction x:TypeArguments="s:Exception">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Eskalation bei Bot-Crash" sap:VirtualizedContainerService.HintSize="486,896" sap2010:WorkflowViewState.IdRef="Sequence_12">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:LogMessage DisplayName="Log Fatal" sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="LogMessage_16" Level="Fatal" Message="[&quot;Bot-Crash: &quot; &amp; exception.Message &amp; Environment.NewLine &amp; exception.StackTrace]" />
+            <TryCatch DisplayName="Crash-Eskalationsmail senden" sap:VirtualizedContainerService.HintSize="452,661" sap2010:WorkflowViewState.IdRef="TryCatch_7">
+              <TryCatch.Try>
+                <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" ReplyTo="{x:Null}" ResourceAttachmentList="{x:Null}" ResourceAttachments="{x:Null}" Result="{x:Null}" SecurePassword="{x:Null}" TimeoutMS="{x:Null}" UseOAuth="{x:Null}" Action="Forward" AttachmentInputMode="Existing" Body="[&quot;Fehler: &quot; &amp; exception.Message &amp; Environment.NewLine &amp; exception.StackTrace]" ConnectionMode="LegacyConfiguration" CreatedAfterSolutionSupport="False" DisplayName="Crash-Mail an Admin" Email="[&quot;robot@btt.example&quot;]" EnableSSL="True" sap:VirtualizedContainerService.HintSize="450,247" sap2010:WorkflowViewState.IdRef="SendMail_2" IgnoreCRL="False" IsBodyHtml="False" Password="[&quot;PLACEHOLDER_BITTE_KONFIGURIEREN&quot;]" Port="[587]" SecureConnection="Auto" Server="[&quot;smtp.office365.com&quot;]" Subject="[&quot;BOT-CRASH TED-Monitoring &quot; &amp; DateTime.Now.ToString(&quot;dd.MM.yyyy HH:mm&quot;)]" To="jochum.justus@hm.edu" UseISConnection="False" UseRichTextEditor="True">
+                  <ui:SendMail.AttachmentsBackup>
+                    <usau:BackupSlot x:TypeArguments="umame:AttachmentInputMode" StoredValue="Existing">
+                      <usau:BackupSlot.BackupValues>
+                        <scg:Dictionary x:TypeArguments="umame:AttachmentInputMode, scg:List(x:Object)" />
+                      </usau:BackupSlot.BackupValues>
+                    </usau:BackupSlot>
+                  </ui:SendMail.AttachmentsBackup>
+                  <ui:SendMail.ConnectionDetailsBackupSlot>
+                    <usau:BackupSlot x:TypeArguments="umae:ConnectionDetails" StoredValue="LegacyConfiguration">
+                      <usau:BackupSlot.BackupValues>
+                        <scg:Dictionary x:TypeArguments="umae:ConnectionDetails, scg:List(x:Object)" />
+                      </usau:BackupSlot.BackupValues>
+                    </usau:BackupSlot>
+                  </ui:SendMail.ConnectionDetailsBackupSlot>
+                  <ui:SendMail.Files>
+                    <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+                  </ui:SendMail.Files>
+                </ui:SendMail>
+              </TryCatch.Try>
+              <TryCatch.Catches>
+                <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_7">
+                  <ActivityAction x:TypeArguments="s:Exception">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="s:Exception" Name="crashMailEx" />
+                    </ActivityAction.Argument>
+                    <ui:LogMessage sap:VirtualizedContainerService.HintSize="450,143" sap2010:WorkflowViewState.IdRef="LogMessage_17" Level="Error" Message="[&quot;Crash-Eskalationsmail fehlgeschlagen: &quot; &amp; crashMailEx.Message]" />
+                  </ActivityAction>
+                </Catch>
+              </TryCatch.Catches>
+            </TryCatch>
+          </Sequence>
+        </ActivityAction>
+      </Catch>
+    </TryCatch.Catches>
+  </TryCatch>
+</Activity>
