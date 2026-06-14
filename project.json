@@ -53,12 +53,6 @@
       "uniqueId": "a1b2c3d4-e5f6-47a8-9b0c-1d2e3f4a5b6c",
       "input": [],
       "output": []
-    },
-    {
-      "filePath": "CreateSampleData.xaml",
-      "uniqueId": "103ac623-474b-489a-a01d-c0d259622370",
-      "input": [],
-      "output": []
     }
   ],
   "isTemplate": false,
