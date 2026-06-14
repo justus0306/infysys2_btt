@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" sap:VirtualizedContainerService.HintSize="1734,1564" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing.Common" xmlns:sd2="clr-namespace:System.Drawing;assembly=System.Drawing.Primitives" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:umam="clr-namespace:UiPath.MicrosoftOffice365.Activities.Mail;assembly=UiPath.MicrosoftOffice365.Activities" xmlns:umame="clr-namespace:UiPath.MicrosoftOffice365.Activities.Mail.Enums;assembly=UiPath.MicrosoftOffice365.Activities" xmlns:umamm="clr-namespace:UiPath.MicrosoftOffice365.Activities.Mail.Models;assembly=UiPath.MicrosoftOffice365.Activities" xmlns:upr="clr-namespace:UiPath.Platform.ResourceHandling;assembly=UiPath.Platform" xmlns:usau="clr-namespace:UiPath.Shared.Activities.Utils;assembly=UiPath.MicrosoftOffice365.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" sap:VirtualizedContainerService.HintSize="2237,1564" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing.Common" xmlns:sd2="clr-namespace:System.Drawing;assembly=System.Drawing.Primitives" xmlns:ue="clr-namespace:UiPath.Excel;assembly=UiPath.Excel.Activities" xmlns:ueab="clr-namespace:UiPath.Excel.Activities.Business;assembly=UiPath.Excel.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:umam="clr-namespace:UiPath.MicrosoftOffice365.Activities.Mail;assembly=UiPath.MicrosoftOffice365.Activities" xmlns:umame="clr-namespace:UiPath.MicrosoftOffice365.Activities.Mail.Enums;assembly=UiPath.MicrosoftOffice365.Activities" xmlns:umamm="clr-namespace:UiPath.MicrosoftOffice365.Activities.Mail.Models;assembly=UiPath.MicrosoftOffice365.Activities" xmlns:upr="clr-namespace:UiPath.Platform.ResourceHandling;assembly=UiPath.Platform" xmlns:usau="clr-namespace:UiPath.Shared.Activities.Utils;assembly=UiPath.MicrosoftOffice365.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>GlobalConstantsNamespace</x:String>
@@ -39,6 +39,8 @@
       <x:String>UiPath.Shared.Activities.ConnectionService.Contracts</x:String>
       <x:String>UiPath.MicrosoftOffice365.Activities</x:String>
       <x:String>System.Numerics</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.Excel.Activities.Business</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -92,6 +94,7 @@
       <AssemblyReference>System.Data.Common</AssemblyReference>
       <AssemblyReference>UiPath.MicrosoftOffice365.Activities</AssemblyReference>
       <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <sap:WorkflowViewStateService.ViewState>
@@ -106,7 +109,7 @@
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <TryCatch.Try>
-      <Flowchart sap2010:Annotation.AnnotationText="Long-Running-Ablauf: Bot uebernimmt 5 Datensystem-Schritte, Mensch entscheidet Go/No-Go." DisplayName="Robo Path: TED-Monitoring (Human-in-the-Loop)" sap:VirtualizedContainerService.HintSize="634,637" sap2010:WorkflowViewState.IdRef="Flowchart_1">
+      <Flowchart sap2010:Annotation.AnnotationText="Long-Running-Ablauf: Bot uebernimmt 5 Datensystem-Schritte, Mensch entscheidet Go/No-Go." DisplayName="Robo Path: TED-Monitoring (Human-in-the-Loop)" sap:VirtualizedContainerService.HintSize="1359,945" sap2010:WorkflowViewState.IdRef="Flowchart_1">
         <Flowchart.Variables>
           <Variable x:TypeArguments="x:String" Default="&quot;Data\suchkriterien.xlsx&quot;" Name="in_SearchCriteriaFile" />
           <Variable x:TypeArguments="x:String" Default="&quot;Data\seen.xlsx&quot;" Name="in_SeenFile" />
@@ -153,7 +156,7 @@
               <av:PointCollection x:Key="ConnectorLocation">85,100 85,70</av:PointCollection>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <Sequence DisplayName="1. suchkriterien.xlsx lesen" sap:VirtualizedContainerService.HintSize="486,1995" sap2010:WorkflowViewState.IdRef="Sequence_26">
+          <Sequence DisplayName="1. suchkriterien.xlsx lesen" sap:VirtualizedContainerService.HintSize="486,2485" sap2010:WorkflowViewState.IdRef="Sequence_26">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -191,7 +194,23 @@
                 <InArgument x:TypeArguments="x:Int32">[0]</InArgument>
               </Assign.Value>
             </Assign>
-            <ui:ReadRange Range="{x:Null}" AddHeaders="True" DataTable="[dt_Criteria]" DisplayName="Suchkriterien lesen (Workbook)" sap:VirtualizedContainerService.HintSize="452,227" sap2010:WorkflowViewState.IdRef="ReadRange_1" SheetName="[&quot;Suchkriterien&quot;]" WorkbookPath="[in_SearchCriteriaFile]" />
+            <ueab:ExcelApplicationCard Password="{x:Null}" DisplayName="Suchkriterien-Excel verwenden" sap:VirtualizedContainerService.HintSize="452,295" sap2010:WorkflowViewState.IdRef="ExcelApplicationCard_1" ResizeWindow="None" WorkbookPath="[System.IO.Path.GetFullPath(in_SearchCriteriaFile.Trim(Chr(34)))]">
+              <ueab:ExcelApplicationCard.Body>
+                <ActivityAction x:TypeArguments="ue:IWorkbookQuickHandle">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="ue:IWorkbookQuickHandle" Name="Excel" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Excel-Aktionen" sap:VirtualizedContainerService.HintSize="418,205" sap2010:WorkflowViewState.IdRef="Sequence_Excel1">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ueab:ReadRangeX Range="[Excel.Sheet(&quot;Suchkriterien&quot;)]" DisplayName="Suchkriterien lesen (Excel)" sap:VirtualizedContainerService.HintSize="384,170" sap2010:WorkflowViewState.IdRef="ReadRangeX_1" SaveTo="[dt_Criteria]" />
+                  </Sequence>
+                </ActivityAction>
+              </ueab:ExcelApplicationCard.Body>
+            </ueab:ExcelApplicationCard>
             <TryCatch DisplayName="dt_Active filtern (Aktiv=Ja)" sap:VirtualizedContainerService.HintSize="452,448" sap2010:WorkflowViewState.IdRef="TryCatch_2">
               <TryCatch.Try>
                 <Assign DisplayName="dt_Active = gefilterte Zeilen" sap:VirtualizedContainerService.HintSize="450,143" sap2010:WorkflowViewState.IdRef="Assign_5">
@@ -351,7 +370,6 @@
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <ui:LogMessage DisplayName="Log Browser-TODO" sap:VirtualizedContainerService.HintSize="538,175" sap2010:WorkflowViewState.IdRef="LogMessage_BrowserTodo" Level="Warn" Message="[&quot;[TODO] Browser-Automation noch nicht eingerichtet. Bitte Use Application/Browser + TypeInto + Click + ExtractTableData in Studio aufnehmen. Sehe Annotation des Sequence-Blocks fuer Details.&quot;]" />
                       <uix:NApplicationCard AttachMode="ByInstance" CloseMode="[UiPath.UIAutomationNext.Enums.NAppCloseMode.Never]" DisplayName="Chrome Find notices easily on TED with Advanc(1)" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="538,1784" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" InteractionMode="DebuggerApi" OpenMode="[UiPath.UIAutomationNext.Enums.NAppOpenMode.Always]" ScopeGuid="8eab76ec-9600-447f-bf9e-54e7d3eae4d6" Version="V2">
                         <uix:NApplicationCard.Body>
                           <ActivityAction x:TypeArguments="x:Object">
@@ -515,7 +533,23 @@
                         </Assign>
                         <TryCatch DisplayName="seen.xlsx lesen" sap:VirtualizedContainerService.HintSize="456,618" sap2010:WorkflowViewState.IdRef="TryCatch_3">
                           <TryCatch.Try>
-                            <ui:ReadRange Range="{x:Null}" AddHeaders="True" DataTable="[dt_Seen]" DisplayName="Seen-Liste lesen (Workbook)" sap:VirtualizedContainerService.HintSize="450,195" sap2010:WorkflowViewState.IdRef="ReadRange_2" SheetName="[&quot;Gesehen&quot;]" WorkbookPath="[in_SeenFile]" />
+                            <ueab:ExcelApplicationCard Password="{x:Null}" DisplayName="Seen-Excel verwenden" sap:VirtualizedContainerService.HintSize="450,295" sap2010:WorkflowViewState.IdRef="ExcelApplicationCard_2" ResizeWindow="None" WorkbookPath="[System.IO.Path.GetFullPath(in_SeenFile.Trim(Chr(34)))]">
+                              <ueab:ExcelApplicationCard.Body>
+                                <ActivityAction x:TypeArguments="ue:IWorkbookQuickHandle">
+                                  <ActivityAction.Argument>
+                                    <DelegateInArgument x:TypeArguments="ue:IWorkbookQuickHandle" Name="Excel" />
+                                  </ActivityAction.Argument>
+                                  <Sequence DisplayName="Excel-Aktionen" sap:VirtualizedContainerService.HintSize="416,205" sap2010:WorkflowViewState.IdRef="Sequence_Excel2">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <ueab:ReadRangeX Range="[Excel.Sheet(&quot;Gesehen&quot;)]" DisplayName="Seen-Liste lesen (Excel)" sap:VirtualizedContainerService.HintSize="382,170" sap2010:WorkflowViewState.IdRef="ReadRangeX_2" SaveTo="[dt_Seen]" />
+                                  </Sequence>
+                                </ActivityAction>
+                              </ueab:ExcelApplicationCard.Body>
+                            </ueab:ExcelApplicationCard>
                           </TryCatch.Try>
                           <TryCatch.Catches>
                             <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_3">
@@ -654,6 +688,62 @@
                                       </Catch>
                                     </TryCatch.Catches>
                                   </TryCatch>
+                                  <If Condition="[dt_SeenNew Is Nothing OrElse dt_SeenNew.Columns.Count = 0]" DisplayName="dt_SeenNew Schema sichern (7 Spalten)" sap2010:WorkflowViewState.IdRef="If_SeenSchema">
+                                    <If.Then>
+                                      <Sequence DisplayName="dt_SeenNew Spalten anlegen" sap2010:WorkflowViewState.IdRef="Sequence_SeenSchema">
+                                        <Assign DisplayName="dt_SeenNew = New DataTable" sap2010:WorkflowViewState.IdRef="Assign_SeenSchema">
+                                          <Assign.To>
+                                            <OutArgument x:TypeArguments="sd:DataTable">[dt_SeenNew]</OutArgument>
+                                          </Assign.To>
+                                          <Assign.Value>
+                                            <InArgument x:TypeArguments="sd:DataTable">[New System.Data.DataTable()]</InArgument>
+                                          </Assign.Value>
+                                        </Assign>
+                                        <InvokeMethod DisplayName="Spalte: Notice_ID" sap2010:WorkflowViewState.IdRef="InvokeMethod_Seen1" MethodName="Add">
+                                          <InvokeMethod.TargetObject>
+                                            <InArgument x:TypeArguments="sd:DataColumnCollection">[dt_SeenNew.Columns]</InArgument>
+                                          </InvokeMethod.TargetObject>
+                                          <InArgument x:TypeArguments="x:String">["Notice_ID"]</InArgument>
+                                        </InvokeMethod>
+                                        <InvokeMethod DisplayName="Spalte: Titel" sap2010:WorkflowViewState.IdRef="InvokeMethod_Seen2" MethodName="Add">
+                                          <InvokeMethod.TargetObject>
+                                            <InArgument x:TypeArguments="sd:DataColumnCollection">[dt_SeenNew.Columns]</InArgument>
+                                          </InvokeMethod.TargetObject>
+                                          <InArgument x:TypeArguments="x:String">["Titel"]</InArgument>
+                                        </InvokeMethod>
+                                        <InvokeMethod DisplayName="Spalte: Frist" sap2010:WorkflowViewState.IdRef="InvokeMethod_Seen3" MethodName="Add">
+                                          <InvokeMethod.TargetObject>
+                                            <InArgument x:TypeArguments="sd:DataColumnCollection">[dt_SeenNew.Columns]</InArgument>
+                                          </InvokeMethod.TargetObject>
+                                          <InArgument x:TypeArguments="x:String">["Frist"]</InArgument>
+                                        </InvokeMethod>
+                                        <InvokeMethod DisplayName="Spalte: Land" sap2010:WorkflowViewState.IdRef="InvokeMethod_Seen4" MethodName="Add">
+                                          <InvokeMethod.TargetObject>
+                                            <InArgument x:TypeArguments="sd:DataColumnCollection">[dt_SeenNew.Columns]</InArgument>
+                                          </InvokeMethod.TargetObject>
+                                          <InArgument x:TypeArguments="x:String">["Land"]</InArgument>
+                                        </InvokeMethod>
+                                        <InvokeMethod DisplayName="Spalte: CPV_Code" sap2010:WorkflowViewState.IdRef="InvokeMethod_Seen5" MethodName="Add">
+                                          <InvokeMethod.TargetObject>
+                                            <InArgument x:TypeArguments="sd:DataColumnCollection">[dt_SeenNew.Columns]</InArgument>
+                                          </InvokeMethod.TargetObject>
+                                          <InArgument x:TypeArguments="x:String">["CPV_Code"]</InArgument>
+                                        </InvokeMethod>
+                                        <InvokeMethod DisplayName="Spalte: Erfasst_am" sap2010:WorkflowViewState.IdRef="InvokeMethod_Seen6" MethodName="Add">
+                                          <InvokeMethod.TargetObject>
+                                            <InArgument x:TypeArguments="sd:DataColumnCollection">[dt_SeenNew.Columns]</InArgument>
+                                          </InvokeMethod.TargetObject>
+                                          <InArgument x:TypeArguments="x:String">["Erfasst_am"]</InArgument>
+                                        </InvokeMethod>
+                                        <InvokeMethod DisplayName="Spalte: Link" sap2010:WorkflowViewState.IdRef="InvokeMethod_Seen7" MethodName="Add">
+                                          <InvokeMethod.TargetObject>
+                                            <InArgument x:TypeArguments="sd:DataColumnCollection">[dt_SeenNew.Columns]</InArgument>
+                                          </InvokeMethod.TargetObject>
+                                          <InArgument x:TypeArguments="x:String">["Link"]</InArgument>
+                                        </InvokeMethod>
+                                      </Sequence>
+                                    </If.Then>
+                                  </If>
                                   <ForEach x:TypeArguments="sd:DataRow" DisplayName="ForEach Row in dt_NewHits (Seen)" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[dt_NewHits.AsEnumerable()]">
                                     <ActivityAction x:TypeArguments="sd:DataRow">
                                       <ActivityAction.Argument>
@@ -674,7 +764,7 @@
                                       </Sequence>
                                     </ActivityAction>
                                   </ForEach>
-                                  <ui:AppendRange DataTable="[dt_SeenNew]" DisplayName="Seen-Liste anhaengen (Workbook)" sap2010:WorkflowViewState.IdRef="AppendRange_1" SheetName="[&quot;Gesehen&quot;]" WorkbookPath="[in_SeenFile]" />
+                                  <ui:AppendRange DataTable="[dt_SeenNew]" DisplayName="Seen-Liste anhaengen (Workbook)" sap2010:WorkflowViewState.IdRef="AppendRange_1" SheetName="[&quot;Gesehen&quot;]" WorkbookPath="[System.IO.Path.GetFullPath(in_SeenFile.Trim(Chr(34)))]" />
                                 </Sequence>
                               </If.Then>
                             </If>
