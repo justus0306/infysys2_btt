@@ -108,9 +108,9 @@
     <TryCatch.Try>
       <Flowchart sap2010:Annotation.AnnotationText="Long-Running-Ablauf: Bot uebernimmt 5 Datensystem-Schritte, Mensch entscheidet Go/No-Go." DisplayName="Robo Path: TED-Monitoring (Human-in-the-Loop)" sap:VirtualizedContainerService.HintSize="634,637" sap2010:WorkflowViewState.IdRef="Flowchart_1">
         <Flowchart.Variables>
-          <Variable x:TypeArguments="x:String" Default="&quot;Data\suchkriterien.xlsx&quot;" Name="in_SearchCriteriaFile" />
-          <Variable x:TypeArguments="x:String" Default="&quot;Data\seen.xlsx&quot;" Name="in_SeenFile" />
-          <Variable x:TypeArguments="x:String" Default="&quot;Approve&quot;" Name="HumanDecision" />
+          <Variable x:TypeArguments="x:String" Default="Data\suchkriterien.xlsx" Name="in_SearchCriteriaFile" />
+          <Variable x:TypeArguments="x:String" Default="Data\seen.xlsx" Name="in_SeenFile" />
+          <Variable x:TypeArguments="x:String" Default="Approve" Name="HumanDecision" />
           <Variable x:TypeArguments="sd:DataTable" Name="dt_Criteria" />
           <Variable x:TypeArguments="sd:DataTable" Name="dt_Hits" />
           <Variable x:TypeArguments="sd:DataTable" Name="dt_Seen" />
@@ -118,9 +118,9 @@
           <Variable x:TypeArguments="sd:DataTable" Name="dt_Active" />
           <Variable x:TypeArguments="sd:DataTable" Name="dt_Approved" />
           <Variable x:TypeArguments="sd:DataTable" Name="dt_SeenNew" />
-          <Variable x:TypeArguments="x:String" Default="&quot;.\Output&quot;" Name="in_OutputFolder" />
-          <Variable x:TypeArguments="x:String" Default="&quot;kaul@hm.edu&quot;" Name="in_MailTo" />
-          <Variable x:TypeArguments="x:String" Default="&quot;kaul@hm.edu&quot;" Name="in_AdminMail" />
+          <Variable x:TypeArguments="x:String" Default="Output" Name="in_OutputFolder" />
+          <Variable x:TypeArguments="x:String" Default="kaul@hm.edu" Name="in_MailTo" />
+          <Variable x:TypeArguments="x:String" Default="kaul@hm.edu" Name="in_AdminMail" />
           <Variable x:TypeArguments="s:DateTime" Name="runStart" />
           <Variable x:TypeArguments="x:String" Name="in_Decision" />
           <Variable x:TypeArguments="x:String" Name="icsContent" />
@@ -132,6 +132,7 @@
           <Variable x:TypeArguments="x:Int32" Default="0" Name="NewHitCount" />
           <Variable x:TypeArguments="x:Int32" Default="0" Name="approvedCount" />
           <Variable x:TypeArguments="x:Int32" Default="0" Name="rejectedCount" />
+          <Variable x:TypeArguments="x:Boolean" Default="True" Name="in_DemoFallback" />
         </Flowchart.Variables>
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -351,7 +352,23 @@
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <ui:LogMessage DisplayName="Log Browser-TODO" sap:VirtualizedContainerService.HintSize="538,175" sap2010:WorkflowViewState.IdRef="LogMessage_BrowserTodo" Level="Warn" Message="[&quot;[TODO] Browser-Automation noch nicht eingerichtet. Bitte Use Application/Browser + TypeInto + Click + ExtractTableData in Studio aufnehmen. Sehe Annotation des Sequence-Blocks fuer Details.&quot;]" />
+                      <ui:LogMessage DisplayName="Log 2-3 Browser/Demo" sap:VirtualizedContainerService.HintSize="538,175" sap2010:WorkflowViewState.IdRef="LogMessage_BrowserTodo" Level="Info" Message="[&quot;(2-3/9) in_DemoFallback=&quot; &amp; in_DemoFallback.ToString() &amp; &quot; | True = offline Demo-Treffer, False = Live-TED-Browser (UiPath-Extension noetig).&quot;]" />
+                      <If Condition="[in_DemoFallback]" DisplayName="Demo-Modus (offline, kein Browser)?" sap:VirtualizedContainerService.HintSize="538,1850" sap2010:WorkflowViewState.IdRef="If_DemoBrowser">
+                        <If.Then>
+                          <Sequence DisplayName="Demo: Beispiel-Treffer einspielen" sap:VirtualizedContainerService.HintSize="450,520">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <ui:AddDataRow ArrayRow="[New Object(){&quot;DEMO-001/2026&quot;, &quot;Lieferung ballistischer Schutzwesten (Demo)&quot;, DateTime.Now.AddDays(21).ToString(&quot;yyyy-MM-dd&quot;), &quot;DE&quot;, &quot;35815100&quot;, &quot;45000&quot;, &quot;Hoch&quot;, &quot;https://ted.europa.eu/en/notice/-/detail/DEMO-001-2026&quot;}]" DataTable="[dt_Hits]" DisplayName="Sample-Treffer 1" sap:VirtualizedContainerService.HintSize="416,123" sap2010:WorkflowViewState.IdRef="AddDataRow_Demo1" />
+                            <ui:AddDataRow ArrayRow="[New Object(){&quot;DEMO-002/2026&quot;, &quot;Beschaffung Gefechtshelme (Demo)&quot;, DateTime.Now.AddDays(35).ToString(&quot;yyyy-MM-dd&quot;), &quot;AT&quot;, &quot;35813000&quot;, &quot;30000&quot;, &quot;Mittel&quot;, &quot;https://ted.europa.eu/en/notice/-/detail/DEMO-002-2026&quot;}]" DataTable="[dt_Hits]" DisplayName="Sample-Treffer 2" sap:VirtualizedContainerService.HintSize="416,123" sap2010:WorkflowViewState.IdRef="AddDataRow_Demo2" />
+                            <ui:LogMessage DisplayName="Log Demo-Treffer" sap:VirtualizedContainerService.HintSize="416,143" sap2010:WorkflowViewState.IdRef="LogMessage_Demo" Level="Info" Message="[&quot;(2-3/9) Demo-Modus: 2 Beispiel-Treffer in dt_Hits (kein Live-TED, keine Extension noetig).&quot;]" />
+                          </Sequence>
+                        </If.Then>
+                        <If.Else>
+                          <TryCatch DisplayName="TED-Browser-Scrape (fail-safe)" sap:VirtualizedContainerService.HintSize="538,1750" sap2010:WorkflowViewState.IdRef="TryCatch_Browser">
+                            <TryCatch.Try>
                       <uix:NApplicationCard AttachMode="ByInstance" CloseMode="[UiPath.UIAutomationNext.Enums.NAppCloseMode.Never]" DisplayName="Chrome Find notices easily on TED with Advanc(1)" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="538,1784" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" InteractionMode="DebuggerApi" OpenMode="[UiPath.UIAutomationNext.Enums.NAppOpenMode.Always]" ScopeGuid="8eab76ec-9600-447f-bf9e-54e7d3eae4d6" Version="V2">
                         <uix:NApplicationCard.Body>
                           <ActivityAction x:TypeArguments="x:Object">
@@ -487,6 +504,20 @@
                           </uix:TargetApp>
                         </uix:NApplicationCard.TargetApp>
                       </uix:NApplicationCard>
+                            </TryCatch.Try>
+                            <TryCatch.Catches>
+                              <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch_Browser">
+                                <ActivityAction x:TypeArguments="s:Exception">
+                                  <ActivityAction.Argument>
+                                    <DelegateInArgument x:TypeArguments="s:Exception" Name="browserEx" />
+                                  </ActivityAction.Argument>
+                                  <ui:LogMessage DisplayName="Log Browser-Fehler" sap:VirtualizedContainerService.HintSize="416,143" sap2010:WorkflowViewState.IdRef="LogMessage_BrowserErr" Level="Warn" Message="[&quot;(2-3/9) Live-Browser fehlgeschlagen (Extension/Selektoren/TED?): &quot; &amp; browserEx.Message &amp; &quot; | Tipp: in_DemoFallback=True fuer Offline-Demo.&quot;]" />
+                                </ActivityAction>
+                              </Catch>
+                            </TryCatch.Catches>
+                          </TryCatch>
+                        </If.Else>
+                      </If>
                     </Sequence>
                     <ui:LogMessage DisplayName="Log 3" sap:VirtualizedContainerService.HintSize="572,166" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;(3/9) dt_Hits Schema: &quot; &amp; dt_Hits.Columns.Count &amp; &quot; Spalten. Browser-Automation: Use Application/Browser in Sequence-Platzhalter einrichten.&quot;]" />
                   </Sequence>
