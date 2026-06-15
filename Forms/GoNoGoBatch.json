@@ -1,0 +1,69 @@
+{
+  "display": "form",
+  "components": [
+    {
+      "tag": "h3",
+      "content": "Neue EU-Ausschreibungen – Sammel-Freigabe (Bavaria Tactical Trading)",
+      "type": "htmlelement",
+      "key": "header",
+      "input": false,
+      "tableView": false
+    },
+    {
+      "html": "<p>Bitte je Treffer <b>Freigeben</b> anhaken und anschließend <b>Freigabe absenden</b>. Nur angehakte Treffer werden in Kalender + Vertriebs-Mail übernommen. <b>Alle ablehnen</b> verwirft den ganzen Lauf.</p>",
+      "type": "content",
+      "key": "hinweis",
+      "input": false,
+      "tableView": false
+    },
+    {
+      "label": "Neue Ausschreibungen",
+      "key": "Treffer",
+      "type": "datagrid",
+      "input": true,
+      "tableView": false,
+      "reorder": false,
+      "addAnother": false,
+      "addAnotherPosition": "bottom",
+      "disableAddingRemovingRows": true,
+      "components": [
+        { "label": "Freigeben", "key": "Freigeben", "type": "checkbox", "input": true, "tableView": true, "defaultValue": false },
+        { "label": "Titel",      "key": "Titel",      "type": "textfield", "input": true, "tableView": true,  "disabled": true },
+        { "label": "Frist",      "key": "Frist",      "type": "textfield", "input": true, "tableView": true,  "disabled": true },
+        { "label": "Land",       "key": "Land",       "type": "textfield", "input": true, "tableView": true,  "disabled": true },
+        { "label": "CPV",        "key": "CPV",        "type": "textfield", "input": true, "tableView": true,  "disabled": true },
+        { "label": "Prioritaet", "key": "Prioritaet", "type": "textfield", "input": true, "tableView": true,  "disabled": true },
+        { "label": "Link",       "key": "Link",       "type": "textfield", "input": true, "tableView": false, "disabled": true },
+        { "label": "NoticeId",   "key": "NoticeId",   "type": "hidden",    "input": true, "tableView": false }
+      ]
+    },
+    {
+      "label": "Kommentar (optional)",
+      "key": "Kommentar",
+      "type": "textarea",
+      "input": true,
+      "tableView": false,
+      "rows": 2
+    },
+    {
+      "type": "button",
+      "label": "Freigabe absenden",
+      "key": "Approve",
+      "action": "saveState",
+      "state": "Approve",
+      "theme": "primary",
+      "input": true,
+      "tableView": false
+    },
+    {
+      "type": "button",
+      "label": "Alle ablehnen",
+      "key": "Reject",
+      "action": "saveState",
+      "state": "Reject",
+      "theme": "danger",
+      "input": true,
+      "tableView": false
+    }
+  ]
+}

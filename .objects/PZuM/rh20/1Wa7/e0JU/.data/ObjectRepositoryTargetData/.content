@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="utf-16"?>
-<ObjectRepositoryTargetData ContentHash="qQfkM-iuzUqcC2R2e1Rp9w" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<ObjectRepositoryTargetData ContentHash="qxmf4GYe-kiYv6BQQ25Dhw" Reference="x_s6q6AvLEiNWWcjM8Q0TQ/e0JU10zwL0mliiYuMalE1A" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <ObjectRepositoryTargetData.Data>
-    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="ted.europa.eu/en/advanced-search" DesignTimeRectangle="1754, 344, 83, 40" ElementType="Button" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl id='ted-search-submit' tag='BUTTON' type='button' class='ted-search__button-search' aaname=' &amp;#x9;&amp;#x9;&amp;#x9;Search &amp;#x9;&amp;#x9;&amp;#x9; &amp;#x9;&amp;#x9;' matching:id='fuzzy' fuzzylevel:id='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='Search' /&gt;" Guid="6f38823c-2c07-4644-a43e-d23cc8f8f7bb" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Find notices easily on TED with Advanced Search - TED' /&gt;" SearchSteps="FuzzySelector" Version="V6">
-      <TargetAnchorable.Anchors>
-        <scg:List x:TypeArguments="ITarget" Capacity="4">
-          <Target DesignTimeRectangle="1772, 356, 47, 16" ElementType="Text" FuzzySelectorArgument="&lt;webctrl parentid='ted-search-submit' tag='SPAN' type='' class='d-none d-md-inline' aaname='Search' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='Search' /&gt;" Guid="0add9aa5-2ce5-480b-926a-314746dfe8ef" SearchSteps="FuzzySelector" />
-        </scg:List>
-      </TargetAnchorable.Anchors>
-      <imageRef attrName="InformativeScreenshot" originalValue="14e256499eb20d740a5a8d07c7f856e2.jpg" xmlns="">0DFUzU642Wka6usUVoy33Hg</imageRef>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="ted.europa.eu/en/advanced-search" DesignTimeRectangle="1727, 736, 101, 40" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl tag='BUTTON' type='submit' /&gt;" Guid="d0d2fe72-7f06-4885-a1af-2bbfbf799760" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Find notices easily on TED with Advanced Search - TED' /&gt;" SearchSteps="Selector" Version="V6">
+      <imageRef attrName="InformativeScreenshot" originalValue="1acd63e157bfc9fd3dcc70fefe83e679.jpg" xmlns="">0EpValpjs_kyif-Dt0Fa7Yw</imageRef>
     </TargetAnchorable>
     <x:String x:Key="ActivityType">Click</x:String>
   </ObjectRepositoryTargetData.Data>

@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="utf-16"?>
-<ObjectRepositoryTargetData ContentHash="fE1jUWHTG02BSNXb-uSaNg" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<ObjectRepositoryTargetData ContentHash="p0Pv_PIqIk6DTRfkjfeFsQ" Reference="x_s6q6AvLEiNWWcjM8Q0TQ/RAjBhPB7fUaBl-LNkLrFGw" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <ObjectRepositoryTargetData.Data>
-    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="ted.europa.eu/en/advanced-search" DesignTimeRectangle="890, 344, 864, 40" ElementType="InputBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;webctrl id='ted-search-input-text' tag='INPUT' /&gt;" Guid="2659c74c-e7b8-47a7-a61f-d3b2e3d160ec" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Find notices easily on TED with Advanced Search - TED' /&gt;" SearchSteps="Selector" Version="V6">
-      <imageRef attrName="InformativeScreenshot" originalValue="363642af14083a4a259ca4ac6e7b5040.jpg" xmlns="">0O_JEQ9Izn06yzsm6pwHTow</imageRef>
+    <TargetAnchorable x:Key="TargetAnchorable" BrowserURL="ted.europa.eu/en/advanced-search" DesignTimeRectangle="773, 1321, 253, 37" ElementType="InputBox" ElementVisibilityArgument="Interactive" FuzzySelectorArgument="&lt;webctrl id='classification-cpv' tag='INPUT' type='text' class='custom-react-classes-MuiInputBase-input custom-react-classes-MuiOutlinedInput-input custom-react-classes-MuiInputBase-inputAdornedStart custom-react-classes-MuiInputBase-inputAdornedEnd custom-react-classes-MuiAutocomplete-input custom-react-classes-MuiAutocomplete-inputFocused css-ymngmt' aaname='Business sector (CPV)' matching:id='fuzzy' fuzzylevel:id='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' /&gt;" Guid="cdc15a62-96c2-404e-adbe-3dcb7ef2ac6f" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Find notices easily on TED with Advanced Search - TED' /&gt;" SearchSteps="FuzzySelector" Version="V6">
+      <TargetAnchorable.Anchors>
+        <scg:List x:TypeArguments="ITarget" Capacity="4">
+          <Target DesignTimeRectangle="723, 1295, 355, 19" ElementType="Text" FuzzySelectorArgument="&lt;webctrl type='' parentid='panel3' tag='LABEL' class='custom-react-classes-MuiFormLabel-root custom-react-classes-MuiInputLabel-root custom-react-classes-MuiInputLabel-animated custom-react-classes-MuiFormLabel-colorPrimary custom-react-classes-MuiInputLabel-root custom-react-classes-MuiInputLabel-animated css-1wtkxmx' aaname='Business sector (CPV)' matching:parentid='fuzzy' fuzzylevel:parentid='0.0' matching:class='fuzzy' fuzzylevel:class='0.0' matching:aaname='fuzzy' fuzzylevel:aaname='0.0' check:innerText='Business sector (CPV)' /&gt;" Guid="21c08d29-084a-401e-96f8-6aa32670e2d5" SearchSteps="FuzzySelector" />
+        </scg:List>
+      </TargetAnchorable.Anchors>
+      <TargetAnchorable.PointOffset>
+        <PointOffset X="-6" Y="5" />
+      </TargetAnchorable.PointOffset>
+      <imageRef attrName="InformativeScreenshot" originalValue="d3b22c4d5b1334a1e11bbf5c064efc1a.jpg" xmlns="">0mJUt-O0hT0-_Q6BMYQelrw</imageRef>
     </TargetAnchorable>
     <x:String x:Key="ActivityType">TypeInto</x:String>
   </ObjectRepositoryTargetData.Data>

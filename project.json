@@ -5,8 +5,12 @@
   "main": "Main.xaml",
   "dependencies": {
     "UiPath.Excel.Activities": "3.5.2",
+    "UiPath.Form.Activities": "[26.4.0]",
+    "UiPath.FormActivityLibrary": "[2.0.8]",
+    "UiPath.GSuite.Activities": "[3.9.10]",
     "UiPath.Mail.Activities": "2.9.10",
     "UiPath.MicrosoftOffice365.Activities": "[3.9.11]",
+    "UiPath.Persistence.Activities": "[1.10.0]",
     "UiPath.System.Activities": "[26.2.4]",
     "UiPath.UIAutomation.Activities": "26.4.4-preview"
   },
@@ -14,7 +18,7 @@
   "entitiesStores": [],
   "schemaVersion": "4.0",
   "studioVersion": "25.10.5.0",
-  "projectVersion": "1.0.0",
+  "projectVersion": "1.0.2",
   "runtimeOptions": {
     "autoDispose": false,
     "netFrameworkLazyLoading": false,
